@@ -93,7 +93,7 @@ router.post('/confirm', function(req, res) {
   const allMovies = dataService.getAllMovies();
 
   const foundTimeSlot = allTimes.find(function(t) { return Number(t.id) === timeIdNum; });
-  const foundMovie = allMovies.find(function(m) { return m.id === Number(foundTimeSlot.movieId); });
+  const foundMovie = allMovies.finfd(function(m) { return m.id === Number(foundTimeSlot.movieId); });
 
   let cleanSeatsList = [];
   if (Array.isArray(userSeats)) {
