@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats</title>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Cinema Booking System</h1>
+</header>
+
+<div class="seat-container">
+
+    <h2>Select Your Seats</h2>
+
+    <div class="screen">
+        SCREEN
+    </div>
+
+    <form action="/confirmation" method="GET">
+
+        <% showing.rows.forEach(row => { %>
+
+            <div class="seat-row">
+
+                <div class="row-label">
+                    <%= row.name %>
+                </div>
+
+                <% row.seats.forEach(seat => { %>
+
+                    <% if(seat.available){ %>
+
+                        <input
+                            type="checkbox"
+                            id="<%= row.name %><%= seat.number %>"
+                            name="seats"
+                            value="<%= row.name %><%= seat.number %>"
+                        >
+
+                        <label
+                            for="<%= row.name %><%= seat.number %>"
+                            class="seat available">
+
+                            <%= seat.number %>
+
+                        </label>
+
+                    <% } else { %>
+
+                        <div class="seat unavailable">
+
+                            <%= seat.number %>
+
+                        </div>
+
+                    <% } %>
+
+                <% }) %>
+
+            </div>
+
+        <% }) %>
+
+        <div class="legend">
+
+            <div>
+                <div class="seat available"></div>
+                <span>Available</span>
+            </div>
+
+            <div>
+                <div class="seat selected-demo"></div>
+                <span>Selected</span>
+            </div>
+
+            <div>
+                <div class="seat unavailable"></div>
+                <span>Unavailable</span>
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Continue
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,122 +1,56 @@
 const express = require('express');
 const router = express.Router();
-const dataService = require('./dataService');
 
-// Main Page
-router.get('/', function(req, res) {
-  const allMovies = dataService.getAllMovies();
-  const allTimes = dataService.getAllTimes();
-  
-  res.render('home', { 
-    movies: allMovies, 
-    times: allTimes,
-    selectedMovie: null, 
-    matchedShowtimes: []
-  });
+const movies = require('./data/movies.json');
+const times = require('./data/times.json');
+const showings = require('./data/showings.json');
+
+// Home Page
+router.get('/', (req, res) => {
+
+    // Add showtimes to each movie
+    const moviesWithTimes = movies.map(movie => {
+        return {
+            ...movie,
+            showtimes: times.filter(time => time.movieId === movie.id)
+        };
+    });
+
+    res.render('home', {
+        movies: moviesWithTimes
+    });
 });
 
-router.get('/movie/:movieId', function(req, res) {
-  const movieIdNum = Number(req.params.movieId);
-  
-  const allMovies = dataService.getAllMovies();
-  const allTimes = dataService.getAllTimes();
 
-  const foundMovie = allMovies.find(function(movie) {
-    return movie.id === movieIdNum;
-  });
+// Seat Selection Page
+router.get('/seats', (req, res) => {
 
-  if (!foundMovie) {
-    return res.status(404).send('Movie not found');
-  }
+    const showingId = parseInt(req.query.showingId);
 
-  if (foundMovie.rating === 'U') {
-    foundMovie.badgeColor = 'bg-success';
-  } else if (foundMovie.rating === 'PG') {
-    foundMovie.badgeColor = 'bg-info text-dark';
-  } else if (foundMovie.rating === '12A') {
-    foundMovie.badgeColor = 'bg-warning text-dark';
-  } else if (foundMovie.rating === '15') {
-    foundMovie.badgeColor = 'bg-danger';
-  } else {
-    foundMovie.badgeColor = 'bg-secondary';
-  }
+    const showing = showings.find(s => s.id === showingId);
 
-  const filteredTimes = allTimes.filter(function(timeRow) {
-    return Number(timeRow.movieId) === movieIdNum;
-  });
+    if (!showing) {
+        return res.send("Showing not found");
+    }
 
-  res.render('home', { 
-    movies: allMovies, 
-    times: allTimes,
-    selectedMovie: foundMovie, 
-    matchedShowtimes: filteredTimes 
-  }); 
+    res.render('seats', {
+        showing
+    });
+
 });
 
-router.get('/time/:timeId', function(req, res) {
-  const timeIdNum = Number(req.params.timeId);
 
-  const allTimes = dataService.getAllTimes();
-  const allMovies = dataService.getAllMovies();
-  const allShowings = dataService.getAllShowings(); 
+// Confirmation Page
+router.get('/confirmation', (req, res) => {
 
-  const foundTimeSlot = allTimes.find(function(t) {
-    return Number(t.id) === timeIdNum;
-  });
+    const seats = req.query.seats || "";
+    const total = req.query.total || "£0.00";
 
-  if (!foundTimeSlot) {
-    return res.status(404).send('Time slot not found');
-  }
+    res.render('confirmation', {
+        seats,
+        total
+    });
 
-  const foundMovie = allMovies.find(function(m) {
-    return m.id === Number(foundTimeSlot.movieId);
-  });
-
-  const foundLayout = allShowings.find(function(s) {
-    return s.id === Number(foundTimeSlot.showingId);
-  });
-
-  res.render('seats', {
-    movie: foundMovie,
-    timeSlot: foundTimeSlot,
-    layout: foundLayout
-  });
-});
-
-router.post('/confirm', function(req, res) {
-  const timeIdNum = Number(req.body.timeId);
-  const userSeats = req.body.selectedSeats; 
-  const nameInput = req.body.customerName;
-  const emailInput = req.body.customerEmail;
-
-  const allTimes = dataService.getAllTimes();
-  const allMovies = dataService.getAllMovies();
-
-  const foundTimeSlot = allTimes.find(function(t) { return Number(t.id) === timeIdNum; });
-  const foundMovie = allMovies.finfd(function(m) { return m.id === Number(foundTimeSlot.movieId); });
-
-  let cleanSeatsList = [];
-  if (Array.isArray(userSeats)) {
-    cleanSeatsList = userSeats;
-  } else if (userSeats) {
-    cleanSeatsList = [userSeats];
-  }
-
-  const codeGen = Math.floor(1000 + Math.random() * 9000);
-  const refCode = 'CIN-' + codeGen;
-
-  res.render('confirmation', {
-    bookingReference: refCode,
-    movie: foundMovie,
-    timeSlot: foundTimeSlot,
-    seats: cleanSeatsList,
-    customerName: nameInput,
-    customerEmail: emailInput
-  });
-});
-
-router.use(function(req, res) {
-  res.status(404).send('Page Not Found');
 });
 
 module.exports = router;
