@@ -3,7 +3,6 @@ const path = require('path');
 const routes = require('./routes');
 
 const app = express();
-const PORT = 3000;
 
 app.set('view engine', 'ejs');
 
@@ -17,6 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 
-app.listen(PORT, () => {
-  console.log(`Cinema server running perfectly at http://localhost:${PORT}`);
+app.listen(3000, function() {
+  console.log('Cinema server running at http://localhost:3000');
 });
+
+module.exports = app;
