@@ -1,0 +1,318 @@
+/* ==========================
+   GENERAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#111;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header{
+    background:#000;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.5);
+}
+
+header h1{
+    color:#e50914;
+    font-size:40px;
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero{
+    height:350px;
+    background:url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600") center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    margin-bottom:50px;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+}
+
+.hero div{
+    position:relative;
+    z-index:1;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.hero h4{
+    color:#ddd;
+}
+
+/* ==========================
+   MOVIE CARDS
+========================== */
+
+.movie-card{
+    background:#1e1e1e;
+    border-radius:20px;
+    overflow:hidden;
+    margin:30px auto;
+    max-width:1100px;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,.6);
+    transition:.3s;
+}
+
+.movie-card:hover{
+    transform:translateY(-5px);
+}
+
+.movie-card img{
+    width:280px;
+    object-fit:cover;
+}
+
+.movie-info{
+    padding:30px;
+    flex:1;
+}
+
+.movie-info h2{
+    margin-bottom:15px;
+}
+
+.movie-info p{
+    color:#ccc;
+    margin-bottom:10px;
+}
+
+.showtime-button{
+    display:inline-block;
+    margin:6px;
+    padding:10px 18px;
+    background:#e50914;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.showtime-button:hover{
+    background:#b00610;
+}
+
+/* ==========================
+   CONFIRMATION
+========================== */
+
+.summary{
+    background:#1f1f1f;
+    max-width:700px;
+    margin:60px auto;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.summary h2{
+    margin-bottom:20px;
+}
+
+.summary p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+.summary a{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 30px;
+    background:#e50914;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+/* ==========================
+   SEAT PAGE
+========================== */
+
+.seat-container{
+    width:900px;
+    max-width:95%;
+    margin:40px auto;
+    background:#1f1f1f;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+
+.seat-container h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:38px;
+}
+
+.screen{
+    width:80%;
+    margin:0 auto 50px;
+    padding:18px;
+    background:linear-gradient(to bottom,#ffffff,#cccccc);
+    color:#111;
+    font-weight:bold;
+    border-radius:100px;
+    text-align:center;
+    letter-spacing:5px;
+    box-shadow:0 10px 25px rgba(255,255,255,.25);
+}
+
+.seat-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.row-label{
+    width:40px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#fff;
+}
+
+input[type="checkbox"]{
+    display:none;
+}
+
+.seat{
+    width:45px;
+    height:45px;
+    margin:5px;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.available{
+    background:#3498db;
+    color:white;
+    cursor:pointer;
+}
+
+.available:hover{
+    transform:scale(1.08);
+    background:#2980b9;
+}
+
+.unavailable{
+    background:#555;
+    color:#999;
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+input[type="checkbox"]:checked + label{
+    background:#2ecc71;
+    color:white;
+}
+
+.legend{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:40px 0;
+}
+
+.legend div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.selected-demo{
+    background:#2ecc71;
+}
+
+button{
+    display:block;
+    margin:30px auto 0;
+    padding:15px 50px;
+    background:#e50914;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#b00610;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+    text-align:center;
+    color:#999;
+    padding:30px;
+    margin-top:60px;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:900px){
+
+.movie-card{
+    flex-direction:column;
+}
+
+.movie-card img{
+    width:100%;
+    height:450px;
+}
+
+.hero h1{
+    font-size:40px;
+}
+
+.seat{
+    width:38px;
+    height:38px;
+    font-size:13px;
+}
+
+.row-label{
+    width:30px;
+}
+
+.legend{
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+}
