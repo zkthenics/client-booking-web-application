@@ -1,0 +1,45 @@
+<!-- 1. HEADER PARTIALS (Replaces their raw head and nav code) -->
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main class="container my-5">
+  
+  <!-- 2. MOVIE GRID LAYOUT (Maintained their exactly styled row configuration) -->
+  <div id="movie-grid" class="row row-cols-1 row-cols-md-2 g-4">
+    
+    <!-- LOOP: Replaces their front-end fetch script with safe server-side EJS compilation -->
+    <% movies.forEach(function(movie) { %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          
+          <!-- Clickable poster linking to your dynamic R2 popup route -->
+          <a href="/movie/<%= movie.id %>">
+            <img src="<%= movie.poster %>" class="card-img-top" alt="<%= movie.title %> Poster" style="object-fit: cover; height: 380px;">
+          </a>
+          
+          <div class="card-body">
+            <h5 class="card-title fw-bold"><%= movie.title %></h5>
+            
+            <!-- Dynamic Age Badge computed by your backend routing settings -->
+            <span class="badge <%= movie.badgeColor || 'bg-secondary' %> mb-2"><%= movie.rating %></span>
+            
+            <p class="card-text text-muted small mb-3"><%= movie.description %></p>
+            
+            <!-- Standardized Action button linking directly to the same route -->
+            <a href="/movie/<%= movie.id %>" class="btn btn-primary">
+              View Showtimes
+            </a>
+          </div>
+
+        </div>
+      </div>
+    <% }); %>
+
+  </div>
+</main>
+
+<!-- 3. DETACHED POPUP MODAL (Zahraa & Zak's R2 Component Overlay) -->
+<%- include('partials/movie-modal') %>
+
+<!-- 4. FOOTER CLOSURE (Replaces their raw bootstrap bundle scripts) -->
+<%- include('partials/footer') %>

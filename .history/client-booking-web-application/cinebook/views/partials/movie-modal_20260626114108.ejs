@@ -1,0 +1,61 @@
+<!-- Dark backdrop. Clicking it closes the popup (back to the grid). -->
+<a href="/" class="overlay-backdrop" aria-label="Close"></a>
+
+<div class="overlay-wrap">
+  <div class="movie-modal">
+    <a href="/" class="modal-x" aria-label="Close">&times;</a>
+
+    <div class="movie-modal-grid">
+      <div class="movie-modal-poster">
+        <img src="<%= movie.poster %>" alt="<%= movie.title %> poster" />
+      </div>
+
+      <div class="movie-modal-body">
+        <h2 class="movie-modal-title"><%= movie.title %></h2>
+
+        <div class="movie-modal-meta">
+          <span class="rating-badge <%= ratingClass(movie.rating) %>"><%= movie.rating %></span>
+          <span class="meta-dim">&#128337; <%= movie.duration %> min</span>
+          <span class="meta-dot">&middot;</span>
+          <span class="meta-dim"><%= movie.genre %></span>
+        </div>
+
+        <p class="movie-modal-desc"><%= movie.description %></p>
+
+        <div class="movie-modal-people">
+          <div>
+            <span class="people-label">Director</span>
+            <span class="people-value"><%= movie.director %></span>
+          </div>
+          <div>
+            <span class="people-label">Cast</span>
+            <span class="people-value"><%= movie.cast.join(', ') %></span>
+          </div>
+        </div>
+
+        <h3 class="showtimes-heading">
+          Showtimes<% if (showtimes.length) { %> &middot; <%= showtimes[0].screenName %><% } %>
+        </h3>
+
+        <% if (showtimes.length === 0) { %>
+          <p class="meta-dim">No showtimes scheduled yet.</p>
+        <% } else { %>
+          <% var days = [...new Set(showtimes.map(function (s) { return s.date; }))]; %>
+          <% days.forEach(function (day) { %>
+            <div class="showtime-group">
+              <div class="showtime-day"><%= relativeDay(day) %></div>
+              <div class="showtime-chips">
+                <% showtimes.filter(function (s) { return s.date === day; }).forEach(function (s) { %>
+                  <a class="showtime-chip <%= s.type === 'IMAX' ? 'is-imax' : '' %>" href="/time/<%= s.id %>">
+                    <span class="chip-time"><%= s.time %></span>
+                    <span class="chip-type"><%= s.type %></span>
+                  </a>
+                <% }); %>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

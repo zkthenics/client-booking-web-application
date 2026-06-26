@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Booking Confirmation</h1>
+    </header>
+
+    <main>
+
+        <h2>Your Booking is Confirmed!</h2>
+
+        <p>Thank you for booking with our cinema.</p>
+
+        <hr>
+
+        <h3>Booking Details</h3>
+
+        <p>
+            <strong>Seats:</strong>
+
+            <% if (Array.isArray(seats)) { %>
+
+                <%= seats.join(", ") %>
+
+            <% } else { %>
+
+                <%= seats %>
+
+            <% } %>
+
+        </p>
+
+        <p>
+            <strong>Total Price:</strong>
+            <%= total %>
+        </p>
+
+        <br>
+
+        <a href="/">
+            <button>Return to Home</button>
+        </a>
+
+    </main>
+
+</body>
+</html>
