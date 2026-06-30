@@ -1,0 +1,95 @@
+/* ============================================================================
+   admin.css — Admin panel styling. Reuses the CineBook design tokens from
+   styles.css so the colours/fonts are identical, plus a red radial glow.
+   ============================================================================ */
+
+.admin-body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text);
+  background:
+    radial-gradient(1100px 480px at 50% -8%, rgba(229,9,20,.20), transparent 60%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+/* ---------- shared field styles ---------- */
+.field { display: flex; flex-direction: column; gap: .35rem; }
+.field-label { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.admin-body input, .admin-body select, .admin-body textarea {
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  color: var(--text); padding: .7rem .85rem; font-family: var(--font-body); font-size: .95rem; width: 100%;
+  box-sizing: border-box;
+}
+.admin-body textarea { resize: vertical; }
+.admin-body input:focus, .admin-body select:focus, .admin-body textarea:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(229,9,20,.15);
+}
+.admin-body input::placeholder, .admin-body textarea::placeholder { color: #5a5d66; }
+
+.btn-cine {
+  background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm);
+  padding: .8rem 1.4rem; font-weight: 700; font-size: .95rem; cursor: pointer;
+  box-shadow: var(--shadow-red); transition: transform .15s, filter .15s;
+}
+.btn-cine:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+.logo { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; }
+.logo-mark { width: 14px; height: 22px; border-radius: 3px;
+  background: repeating-linear-gradient(var(--accent) 0 3px, #000 3px 5px); }
+.logo-text { font-family: var(--font-display); letter-spacing: .03em; font-size: 1.25rem; }
+.logo-cine { color: var(--accent); } .logo-book { color: var(--text); }
+
+/* ---------- login ---------- */
+.admin-auth { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.auth-card { width: 100%; max-width: 380px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 2.2rem 2rem; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+.auth-title { font-family: var(--font-display); font-size: 1.8rem; margin: 1.1rem 0 .3rem; }
+.auth-sub { color: var(--muted); font-size: .9rem; margin: 0 0 1.4rem; }
+.auth-form { display: flex; flex-direction: column; gap: .9rem; text-align: left; }
+.auth-form .btn-cine { margin-top: .4rem; width: 100%; }
+.auth-error { background: rgba(212,40,46,.14); border: 1px solid rgba(212,40,46,.5); color: #ff9ca0;
+  border-radius: var(--radius-sm); padding: .6rem .8rem; font-size: .85rem; margin-bottom: 1rem; }
+.auth-back { display: inline-block; margin-top: 1.2rem; color: var(--muted); text-decoration: none; font-size: .85rem; }
+.auth-back:hover { color: var(--text); }
+
+/* ---------- dashboard ---------- */
+.admin-nav { display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.6rem; border-bottom: 1px solid var(--line); background: rgba(10,10,13,.6); }
+.admin-tag { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: 999px; padding: .12rem .5rem; margin-left: .4rem; }
+.admin-nav-right { display: flex; align-items: center; gap: 1rem; }
+.admin-who { color: var(--muted); font-size: .85rem; }
+.admin-link { color: var(--text); text-decoration: none; font-size: .85rem; }
+.admin-link:hover { color: var(--accent); }
+.admin-logout { background: transparent; border: 1px solid var(--line); color: var(--text);
+  border-radius: var(--radius-sm); padding: .45rem .8rem; cursor: pointer; font-size: .85rem; }
+.admin-logout:hover { border-color: var(--accent); color: var(--accent); }
+
+.admin-main { max-width: var(--maxw); margin: 0 auto; padding: 1.8rem 1.6rem 4rem; }
+.admin-flash { background: rgba(47,174,98,.14); border: 1px solid rgba(47,174,98,.5); color: #7ee0a4;
+  border-radius: var(--radius-sm); padding: .7rem 1rem; margin-bottom: 1.4rem; }
+.admin-flash a { color: #aef0c6; }
+
+.admin-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.4rem; align-items: start; }
+.admin-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; }
+.admin-h1 { font-family: var(--font-display); font-size: 1.7rem; margin: 0 0 .2rem; }
+.admin-h2 { font-family: var(--font-display); font-size: 1.15rem; margin: 1.6rem 0 .2rem; }
+.admin-sub { color: var(--muted); font-size: .86rem; margin: 0 0 1rem; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.span-2 { grid-column: 1 / -1; }
+.showing-row { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: .9rem; margin-bottom: .8rem; }
+.admin-submit { margin-top: 1.2rem; }
+
+.count { font-family: var(--font-body); font-size: .8rem; color: var(--muted); }
+.movie-list { list-style: none; margin: 0; padding: 0; max-height: 640px; overflow-y: auto; }
+.movie-list li { display: flex; flex-direction: column; padding: .6rem .2rem; border-bottom: 1px solid var(--line); }
+.ml-title { font-weight: 600; }
+.ml-meta { color: var(--muted); font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .admin-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .showing-row { grid-template-columns: 1fr; }
+}
