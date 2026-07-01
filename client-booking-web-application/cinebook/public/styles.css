@@ -390,6 +390,8 @@ a:active {
     transform: translateY(0);
 }
 
+/* Login Button */
+
 .custom-btn {
     /* Colors */
     background-color: #ff0000;   
@@ -409,4 +411,206 @@ a:active {
 
 .custom-btn:hover {
     background-color: #cc0000;
+}
+
+
+/*Login Page Styles*/
+/* ==========================================================================
+   GLOBAL & ROOT NAVIGATION LOGIC (From your previous home page settings)
+   ========================================================================== */
+body {
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.hero {
+    background: url("https://unsplash.com") center/cover;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 8px black;
+}
+
+.movie-card {
+    transition: .3s;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #1d1d1d;
+}
+
+.movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, .25);
+}
+
+.movie-card img {
+    height: 450px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.card-body {
+    color: white;
+}
+
+.btn-book {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-book:hover {
+    background: #bb2d3b;
+    color: white;
+}
+
+.modal-content {
+    background: #202020;
+    color: white;
+}
+
+.modal-header {
+    border-bottom: 1px solid #444;
+}
+
+.modal-footer {
+    border-top: 1px solid #444;
+}
+
+.show-btn {
+    width: 130px;
+}
+
+/* ==========================================================================
+   FULL DEDICATED LOGIN PAGE STYLES
+   ========================================================================== */
+
+/* 1. Outside environment - Completely pitch black */
+body.login-page {
+    background-color: #000000;     /* Pitch black outer layout */
+    color: #ffffff;                /* Base white text enforcement */
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;       /* Perfectly centers the column horizontally */
+    align-items: stretch;          /* Forces the column to stretch from top to bottom */
+}
+
+/* 2. Top-to-bottom vertical column popup panel */
+.login-container {
+    width: 100%;
+    max-width: 460px;              /* Standard clean layout box width */
+    padding: 60px 45px;            
+    background-color: #1e1e1e;     /* "Not too dark" sleek charcoal background */
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); /* Deep contrast shadowing on black sides */
+    border-radius: 0;              /* Straight flush alignment to top and bottom screens */
+    box-sizing: border-box;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;       /* Vertically centers the form inside the column */
+}
+
+/* Internal form alignment wrapper */
+.login-container form {
+    width: 100%;
+}
+
+/* 3. Title centered at the top of the form layout */
+.login-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #ffffff;                /* Crisp white header text */
+    font-size: 2rem;
+}
+
+/* Form structure container fields */
+.form-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;        /* Stacks elements vertically */
+    align-items: flex-start;       /* Forces left alignment for text labels */
+}
+
+/* 4. Labels sitting directly above and to the left of inputs */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;                /* Plain white label titles */
+    margin-bottom: 8px;            
+    padding-left: 18px;            /* Aligns text with the internal edge curve of circular inputs */
+}
+
+/* 5. Circular / Pill-shaped input fields */
+.form-group input {
+    width: 100%;
+    padding: 14px 22px;            
+    background-color: #2b2b2b;     /* Distinct grey inner box background fill */
+    border: 1px solid #444444;
+    color: #ffffff;                /* Input text reads bright white when typed */
+    border-radius: 50px;           /* Large radius produces pure circular capsule shape */
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;        
+    transition: border-color 0.2s;
+}
+
+/* Focused state accent lines */
+.form-group input:focus {
+    border-color: #ff0000;         /* Vivid red glow response upon user selection */
+}
+
+/* Red & Black Oval Submit Button */
+.submit-btn {
+    width: 100%;
+    background-color: #ff0000;     /* Primary brand red color */
+    color: #ffffff;                /* White button text typography */
+    border: 2px solid #000000;    /* Solid black outline border */
+    padding: 14px;
+    border-radius: 50px;           /* Clean pill/oval layout shape configuration */
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #cc0000;     /* Controlled darker red feedback hover layer */
+}
+
+/*Register Text Link Styling*/
+
+x/* Styling for the redirect text paragraph */
+.register-redirect {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #b3b3b3;            /* Soft grey for the main message text */
+}
+
+/* Styling for the highlighted URL link link */
+.register-redirect a {
+    color: #007bff;            /* Classic vibrant blue URL colour */
+    font-weight: bold;         /* Makes the link bold */
+    text-decoration: none;     /* Keeps it clean by hiding the underline initially */
+    transition: color 0.1s;
+}
+
+/* Hover effect when the user moves their mouse over the blue link */
+.register-redirect a:hover {
+    color: #0056b3;            /* Slightly deeper blue when hovering */
+    text-decoration: underline; /* Adds the standard URL underline back on hover */
+    cursor: pointer;           /* Ensures the mouse turns into a pointer hand */
 }
