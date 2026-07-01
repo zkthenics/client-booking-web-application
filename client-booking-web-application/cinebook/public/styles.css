@@ -389,3 +389,24 @@ a:active {
 .admin-login-btn:active {
     transform: translateY(0);
 }
+
+.custom-btn {
+    /* Colors */
+    background-color: #ff0000;   
+    color: #ffffff;               
+    
+    /* Outline & Border */
+    border: 2px solid #000000;   
+    
+    border-radius: 50px;          
+    padding: 10px 24px;           
+    
+    font-size: 16px;              
+    font-weight: bold;            
+    cursor: pointer;              
+    transition: background 0.2s; 
+}
+
+.custom-btn:hover {
+    background-color: #cc0000;
+}
