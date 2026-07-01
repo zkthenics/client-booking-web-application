@@ -11,9 +11,11 @@
 
 </head>
 
-<body>
+<body class="login-page">
+
     <div class="login-container">
-    <h2>Account Login</h2>
+
+    <h1 class="login-title">Account Login</h1>
     
     <!-- 1. Form submission configuration -->
     <form action="/login" method="POST">
@@ -41,6 +43,11 @@
                 required
             >
         </div>
+
+        <p class="register-redirect">
+        If you do not have an account, <a href="/register">create an account now</a>.
+        </p>
+
 
         <!-- Submit Button -->
         <button type="submit" class="submit-btn">Sign In</button>
