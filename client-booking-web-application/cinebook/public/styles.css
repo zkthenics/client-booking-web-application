@@ -590,6 +590,13 @@ body.login-page {
     background-color: #cc0000;     /* Controlled darker red feedback hover layer */
 }
 
+.login-logo{
+      text-align: center;              /* Centers the logo horizontally */
+      display: block;
+      margin: 0 auto 30px;           /* Centers the logo and adds spacing below */
+      width: 120px;                  /* Fixed width for consistent sizing */
+}
+
 /*Register Text Link Styling*/
 
 x/* Styling for the redirect text paragraph */
