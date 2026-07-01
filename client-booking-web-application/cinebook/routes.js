@@ -21,6 +21,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+router.get('/register', (req, res) => {
+    res.render('register');
+});
+
 
 // Seat Selection Page
 router.get('/seats', (req, res) => {
